@@ -13,15 +13,13 @@ function Search() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (e === '') {
-            navigate('/')
-        }
-        navigate(`search/?term=${searchTerm}`)
+        setSearchTerm("")
+        navigate(`/search/?term=${searchTerm}`)
     }
 
     const handleSelect = id => {
         setSearchTerm("")
-        navigate(`selected_item/?item_id=${id}`)
+        navigate(`/selected_item/?item_id=${id}`)
     }
 
     useEffect(() => {
@@ -45,11 +43,13 @@ function Search() {
     }, [searchTerm])
 
     return (
-        <>
-            <form className='flex p-3 ' onSubmit={handleSubmit}>
-                <FaSearch className='relative mt-5'/>
+        <div className='flex flex-col'>
+            <form className='flex p-3' onSubmit={handleSubmit}>
+                <button className='cursor-pointer' onClick={handleSubmit}>
+                    <FaSearch className='mobile:mt-1' />
+                </button>
                 <input
-                    className='px-4 focus:outline-none border-b'
+                    className='px-4 focus:outline-none'
                     type="text"
                     value={searchTerm}
                     placeholder='Search Products...'
@@ -58,12 +58,12 @@ function Search() {
             </form>
             {
                 autoComplete && (
-                    <ul className=''>
+                    <ul className='flex flex-col justify-center text-color-base bg-shade border'>
                         {autoComplete.map((item) => {
                             return (
                                 <li
                                     key={item._id}
-                                    className='cursor-pointer'
+                                    className='text-center border-b cursor-pointer w-full opacity-50 hover:opacity-100'
                                     onClick={() => handleSelect(item._id)}
                                 >
                                     {item.name}
@@ -73,7 +73,7 @@ function Search() {
                     </ul>
                 )
             }
-        </>
+        </div>
     )
 }
 

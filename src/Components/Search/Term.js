@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import * as Realm from 'realm-web'
 
 /* React Components */
@@ -24,6 +24,7 @@ function Term() {
                 const user = await app.logIn(credentials)
                 const searchedItems = await user.functions.searchItems(query.get("term"))
                 setItems(searchedItems)
+                console.log(searchedItems)
             } catch (error) {
                 console.error(error)
             }
@@ -31,22 +32,25 @@ function Term() {
         getdata()
     }, [query])
     return (
-        <div>
-            {Items ?
-                Items.map((list_item) => (
-                    <Item
-                        name={list_item.name}
-                        desc={list_item.desc}
-                        category={list_item.category ? list_item.category : ""}
-                        size={list_item.size}
-                        price={list_item.price}
-                        img={list_item.img}
-                        key={list_item._id} />
-                ))
-                :
-                <h1>No Such Products</h1>
-            }
-            <h1>Go Back</h1>
+        <div className="flex flex-col text-center justify-center">
+            <h1 className='p-5 m-5 text-xl'>Search results for the term "{query.get('term')}"</h1>
+            <div className="flex flex-wrap justify-center pb-10 mb-10">
+                {Items ?
+                    Items.map((list_item) => (
+                        <Item
+                            name={list_item.name}
+                            desc={list_item.desc}
+                            category={list_item.category ? list_item.category : ""}
+                            size={list_item.size}
+                            price={list_item.price}
+                            img={list_item.img}
+                            key={list_item._id} />
+                    ))
+                    :
+                    <h1>No Such Products</h1>
+                }
+            </div>
+            <Link to='/shop' className='hover:underline text-xl'>Go Back</Link>
         </div>
     )
 }

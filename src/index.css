@@ -3,6 +3,25 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 
+@layer components {
+    .text-gradient {
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .class-1 {
+        opacity: 1;
+    }
+
+    .class-2 {
+        opacity: 0;
+    }
+
+    .class-1:hover .class-2{
+        opacity: 1;
+    }
+}
+
 body {
     font-family: 'Yeseva One', cursive;
 }
@@ -10,4 +29,6 @@ body {
 :root {
     --base-color: white;
     --shade-color: black;
+    --main-color: #EBCADE;
+    --shade-fade-color: rgba(0, 0, 0, 0.85);
 }
