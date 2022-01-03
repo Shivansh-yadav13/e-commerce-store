@@ -7,9 +7,12 @@ module.exports = {
       'mobile-sm': {'max': '400px'},
       'mobile': {'max': '700px'},
       'tablet': {'max': '768px'},
+      'tablet-md': {'max': '1090px'},
       'laptop-sm': {'max': '1114px'},
+      'laptop-md': {'max': '1300px'},
       'laptop': {'max': '1024px'},
       'desktop': {'max': '1280px'},
+      'desktop-lg': {'max': '1600px'}
     },
     colors: {
       'base': 'var(--base-color)',
@@ -42,9 +45,11 @@ module.exports = {
       },
       height: {
         'image': '500px',
+        'pop-up': '40rem'
       },
       width: {
         'image': '300px',
+        'pop-up': '90rem'
       }
     },
   },

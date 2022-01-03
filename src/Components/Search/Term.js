@@ -24,7 +24,6 @@ function Term() {
                 const user = await app.logIn(credentials)
                 const searchedItems = await user.functions.searchItems(query.get("term"))
                 setItems(searchedItems)
-                console.log(searchedItems)
             } catch (error) {
                 console.error(error)
             }
@@ -36,7 +35,7 @@ function Term() {
             <h1 className='p-5 m-5 text-xl'>Search results for the term "{query.get('term')}"</h1>
             <div className="flex flex-wrap justify-center pb-10 mb-10">
                 {Items ?
-                    Items.map((list_item) => (
+                    Items.map((list_item, key) => (
                         <Item
                             name={list_item.name}
                             desc={list_item.desc}
@@ -44,7 +43,8 @@ function Term() {
                             size={list_item.size}
                             price={list_item.price}
                             img={list_item.img}
-                            key={list_item._id} />
+                            id={list_item._id}
+                            key={key} />
                     ))
                     :
                     <h1>No Such Products</h1>

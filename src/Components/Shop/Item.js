@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 /* React Components */
-import Popup from './Popup'
 /* --------------- */
 
 /* Icons */
@@ -10,13 +9,18 @@ import { BsCart4 } from 'react-icons/bs'
 import { BsFillSuitHeartFill } from 'react-icons/bs'
 /* ----- */
 
-function Item({ name, desc, size, price, img, category, id }) {
+function Item({ name, size, price, img, category, id }) {
 
-    const [itemActive, setItemActive] = useState(false)
+    const navigate = useNavigate()
+    console.log(id)
+
+    const handleItemClick = () => {
+        navigate(`/selected_item/?item_id=${id}`)
+    }
 
     return (
         <>
-            <div onClick={() => setItemActive(!itemActive)} className='text-left text-sm p-2 list-none cursor-pointer transition-all duration-300 hover:scale-105'>
+            <div onClick={handleItemClick} className='w-fit text-left text-sm p-2 list-none cursor-pointer transition-all duration-300 hover:scale-105'>
                 <div className="h-image w-image">
                     <img className='class-1 object-cover h-image w-image' src='https://source.unsplash.com/700x900/?cloths' alt='' />
                     <div className="class-2">
@@ -37,9 +41,6 @@ function Item({ name, desc, size, price, img, category, id }) {
                         <button id="fav-on" className='p-2 text-color-shade hover:text-color-main'><BsFillSuitHeartFill /></button>
                     </div>
                 </ul>
-            </div>
-            <div className='absolute'>
-                <Popup name={name} desc={desc} size={size} price={price} img={img} category={category} id={id} active={itemActive} />
             </div>
         </>
     )

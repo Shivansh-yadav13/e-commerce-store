@@ -20,7 +20,6 @@ function App() {
           <Route path='/search/*' element={<Term />} />
           <Route path='/selected_item/*' element={<Selected />} />
         </Routes>
-        <Cart />
       </Router>
   );
 }
