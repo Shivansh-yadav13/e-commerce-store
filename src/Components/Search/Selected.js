@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import * as Realm from 'realm-web'
 
 /* React Components */
-import Item from '../Shop/Item'
 /* ----------------- */
 
 /* Icons & Images */
@@ -16,7 +15,7 @@ function useQuery() {
     return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
-function Term() {
+function Selected() {
     let query = useQuery();
     const [Items, setItems] = useState()
 
@@ -70,4 +69,4 @@ function Term() {
     )
 }
 
-export default Term
+export default Selected
