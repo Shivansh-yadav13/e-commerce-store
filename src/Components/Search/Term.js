@@ -4,6 +4,7 @@ import * as Realm from 'realm-web'
 
 /* React Components */
 import Item from '../Shop/Item'
+import CartDisplay from '../Cart/CartDisplay';
 /* ----------------- */
 
 function useQuery() {
@@ -31,27 +32,30 @@ function Term() {
         getdata()
     }, [query])
     return (
-        <div className="flex flex-col text-center justify-center">
-            <h1 className='p-5 m-5 text-xl'>Search results for the term "{query.get('term')}"</h1>
-            <div className="flex flex-wrap justify-center pb-10 mb-10">
-                {Items ?
-                    Items.map((list_item, key) => (
-                        <Item
-                            name={list_item.name}
-                            desc={list_item.desc}
-                            category={list_item.category ? list_item.category : ""}
-                            size={list_item.size}
-                            price={list_item.price}
-                            img={list_item.img}
-                            id={list_item._id}
-                            key={key} />
-                    ))
-                    :
-                    <h1>No Such Products</h1>
-                }
+        <>
+            <div className="flex flex-col text-center justify-center">
+                <h1 className='p-5 m-5 text-xl'>Search results for the term "{query.get('term')}"</h1>
+                <div className="flex flex-wrap justify-center pb-10 mb-10">
+                    {Items ?
+                        Items.map((list_item, key) => (
+                            <Item
+                                name={list_item.name}
+                                desc={list_item.desc}
+                                category={list_item.category ? list_item.category : ""}
+                                size={list_item.size}
+                                price={list_item.price}
+                                img={list_item.img}
+                                id={list_item._id}
+                                key={key} />
+                        ))
+                        :
+                        <h1>No Such Products</h1>
+                    }
+                </div>
+                <Link to='/shop' className='hover:underline text-xl'>Go Back</Link>
             </div>
-            <Link to='/shop' className='hover:underline text-xl'>Go Back</Link>
-        </div>
+            <CartDisplay/>
+        </>
     )
 }
 

@@ -36,7 +36,7 @@ function Navbar() {
     }
 
     return (
-        <nav className='sticky top-0 z-10 backdrop-blur-sm bg-shade-fade flex justify-around text-color-base drop-shadow-md text-sm py-5 mobile:justify-between mobile-sm:justify-around mobile:py-5'>
+        <nav className='sticky top-0 z-20 backdrop-blur-sm bg-shade-fade flex justify-around text-color-base drop-shadow-md text-sm py-5 mobile:justify-between mobile-sm:justify-around mobile:py-5'>
             <img
                 src={logo}
                 alt=''

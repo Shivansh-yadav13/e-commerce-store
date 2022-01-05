@@ -9,29 +9,42 @@ const Cart = ({ id }) => {
     let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) ? JSON.parse(sessionStorage.getItem('cartItems')) : []
 
     const findItemInCart = () => {
-        if (cartItems.length != 0) {
-            console.log(cartItems, cartItems.length)
-            for (let i=0; i<cartItems.length; i++) {
+        if (cartItems.length !== 0) {
+            for (let i = 0; i < cartItems.length; i++) {
                 if (cartItems[i] == id) {
-                    console.log('breaking out!')
                     setBtnClass(`btn-${id} p-2 mt-auto text-color-main`)
                 }
             }
         }
     }
-    
-    useEffect(() => {
-        findItemInCart()
-    }, [])
 
     const addToCard = () => {
         let cartData = JSON.parse(sessionStorage.getItem('cartItems')) ? JSON.parse(sessionStorage.getItem('cartItems')) : []
-        cartData.sort()
+        let cartDataTimes = JSON.parse(sessionStorage.getItem("cartItemsTimes")) ? JSON.parse(sessionStorage.getItem("cartItemsTimes")) : []
+        let selectedItem = document.querySelector(`.btn-${id}`)
+        /* Removing items from the cart */
+        if (selectedItem.className == `btn-${id} p-2 mt-auto text-color-main`) {
+            const selectedItem_Index =  cartData.indexOf(`${id}`)
+            if (selectedItem_Index > -1) {
+                cartData.splice(selectedItem_Index, 1)
+                cartDataTimes.splice(selectedItem_Index, 1)
+                sessionStorage.setItem("cartItems", JSON.stringify(cartData))
+                sessionStorage.setItem("cartItemsTimes", JSON.stringify(cartDataTimes))
+                selectedItem.className = `btn-${id} p-2 mt-auto text-color-shade hover:text-color-main`
+                return
+            }
+        }
+        /* Adding items in the cart */
         cartData.push(id)
-        sessionStorage.setItem("cartItems", JSON.stringify(cartData));
-        document.querySelector(`.btn-${id}`).className = `btn-${id} p-2 mt-auto text-color-main`
-        console.log(cartData)
+        cartDataTimes.push(1)
+        sessionStorage.setItem("cartItems", JSON.stringify(cartData))
+        sessionStorage.setItem("cartItemsTimes", JSON.stringify(cartDataTimes))
+        selectedItem.className = `btn-${id} p-2 mt-auto text-color-main`
     }
+
+    useEffect(() => {
+        findItemInCart()
+    }, [])
 
     return (
         <>

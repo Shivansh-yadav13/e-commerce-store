@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 /* React Components */
 import Cart from '../Cart/Cart'
@@ -22,7 +22,7 @@ function Item({ name, size, price, img, category, id }) {
         <>
             <div className='w-fit text-left text-sm p-2 list-none cursor-pointer transition-all duration-300 hover:scale-105'>
                 <div className="h-image w-image" onClick={handleItemClick}>
-                    <img className='class-1 object-cover h-image w-image' src='https://source.unsplash.com/700x900/?cloths' alt='' />
+                    <img className='class-1 object-fit h-image w-image' src='https://source.unsplash.com/700x900/?cloths' alt='' />
                     <div className="class-2">
                         <h1>SHOW</h1>
                     </div>

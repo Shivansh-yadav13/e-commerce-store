@@ -7,7 +7,6 @@ import Home from './Components/Home/Home'
 import Shop from './Components/Shop/Shop'
 import Term from './Components/Search/Term'
 import Selected from './Components/Search/Selected'
-import Cart from './Components/Cart/Cart'
 /* -------------- */
 
 function App() {
