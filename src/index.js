@@ -6,9 +6,9 @@ import { Auth0Provider } from '@auth0/auth0-react'
 
 ReactDOM.render(
   <Auth0Provider
-    domain='thriftwithg.us.auth0.com'
+    domain={process.env.REACT_APP_AUTH_DOMAIN}
     clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
-    redirectUri='http://localhost:3000/shop/'
+    redirectUri='http://localhost:3000/shop'
   >
     <App />
   </Auth0Provider>,

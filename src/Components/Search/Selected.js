@@ -20,6 +20,7 @@ function useQuery() {
 function Selected() {
     let query = useQuery();
     const [Items, setItems] = useState()
+    const [renderTriggerState, setRenderTriggerState] = useState(false)
 
     const navigate = useNavigate()
 
@@ -51,13 +52,13 @@ function Selected() {
                             <p className='opacity-70 text-xl'>{Items.desc}</p>
                             <p className='opacity-70 text-xl'>Size: {Items.size}</p>
                             <p className='opacity-70 mt-5 text-4xl'>₹{Items.price}</p>
-                            <div className='mt-5 text-4xl'>
-                                <Cart id={Items._id} />
+                            <div className='mt-5 text-4xl' onClick={() => setRenderTriggerState(!renderTriggerState)}>
+                                <Cart id={Items._id} name={Items.name} price={Items.price} />
                                 <button id="fav-off" className='p-2 text-color-main hidden'><BsFillSuitHeartFill /></button>
                                 <button id="fav-on" className='p-2 text-color-shade hover:text-color-main'><BsFillSuitHeartFill /></button>
                             </div>
                             <div className="">
-                                <button className='relative top-4 border px-5 py-2 bg-base text-color-shade duration-300 transition-all hover:bg-shade hover:text-color-base'>Purchase</button>
+                                <button onClick={() => {navigate("/user-cart-items")}} className='relative top-4 border px-5 py-2 bg-base text-color-shade duration-300 transition-all hover:bg-shade hover:text-color-base'>Purchase</button>
                             </div>
                         </div>
                     </div>

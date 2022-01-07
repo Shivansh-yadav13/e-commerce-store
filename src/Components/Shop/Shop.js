@@ -7,12 +7,13 @@ import Search from './Search'
 import CartDisplay from '../Cart/CartDisplay'
 /* ----------------- */
 
-/* Images and Icons */
+/* Images and Icons 
 import Illustration from '../../assets/images/girls_illu.png'
 /* ----------------- */
 
 function Shop() {
     const [Items, setItems] = useState([])
+    const [renderTriggerState, setRenderTriggerState] = useState(false)
 
     const getdata = async () => {
         const app = new Realm.App(({ id: process.env.REACT_APP_REALM_ID }))
@@ -25,6 +26,7 @@ function Shop() {
             console.error(error)
         }
     }
+
     useEffect(() => {
         getdata()
     }, [])
@@ -32,17 +34,17 @@ function Shop() {
         <>
             <div className='text-center place-self-center'>
                 <div className='flex justify-center gap-10 bg-shade m-5 p-2'>
-                    <img className='w-32 h-fit mt-auto mb-auto mobile:hidden' src={Illustration} alt="" />
+                    {/* <img className='w-32 h-fit mt-auto mb-auto mobile:hidden' src={Illustration} alt="" /> */}
                     <div className="text mt-auto mb-auto">
                         <h1 className='text-8xl drop-shadow-md mt-2 py-5 font-extrabold text-gradient bg-clip-text bg-gradient-to-br from-main to-base border'>SHOP</h1>
                     </div>
-                    <img className='w-32 h-fit mt-auto mb-auto mobile:hidden' src={Illustration} alt="" />
+                    {/* <img className='w-32 h-fit mt-auto mb-auto mobile:hidden' src={Illustration} alt="" /> */}
                 </div>
                 <div className='flex flex-col mb-auto pb-20'>
                     <div className='flex justify-center my-2 py-2'>
                         <Search />
                     </div>
-                    <div className='flex flex-wrap justify-center'>
+                    <div className='flex flex-wrap justify-center' onClick={() => setRenderTriggerState(!renderTriggerState)}>
                         {Items ?
                             Items.map((list_item, key) => (
                                 <Item
@@ -62,7 +64,7 @@ function Shop() {
                     </div>
                 </div>
             </div>
-            <CartDisplay/>
+            <CartDisplay />
         </>
     )
 }

@@ -20,7 +20,8 @@ module.exports = {
       'shade-fade': 'var(--shade-fade-color)',
       'yellow': 'rgb(253 224 71)',
       'green': 'rgb(52 211 153)',
-      'main': 'var(--main-color)'
+      'main': 'var(--main-color)',
+      'red': 'rgba(235, 68, 62, 0.931)'
     },
     extend: {
       textColor: {
@@ -30,7 +31,8 @@ module.exports = {
           shade: 'var(--shade-color)',
           shadeFade: 'var(--shade-fade-color)',
           yellow: 'rgb(253 224 71)',
-          green: 'rgb(52 211 153)'
+          green: 'rgb(52 211 153)',
+          red: 'rgba(235, 68, 62, 0.931)'
         }
       },
       backgroundColor: {
@@ -40,7 +42,8 @@ module.exports = {
           shade: 'var(--shade-color)',
           shadeFade: 'var(--shade-fade-color)',
           yellow: 'rgb(253 224 71)',
-          green: 'rgb(52 211 153)'
+          green: 'rgb(52 211 153)',
+          red: 'rgba(235, 68, 62, 0.931)'
         }
       },
       height: {

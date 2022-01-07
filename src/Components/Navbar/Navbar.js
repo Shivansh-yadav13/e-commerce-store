@@ -21,6 +21,7 @@ function Navbar() {
     } = useAuth0();
 
     const [menuSwtich, setMenuSwtich] = useState(false)
+    const [dropDownActive, setDropDownActive] = useState(false)
 
     const handleMenu = () => {
         let ham = document.querySelector('.ham-menu')
@@ -35,12 +36,23 @@ function Navbar() {
         setMenuSwtich(!menuSwtich)
     }
 
+    const handleDropDown = () => {
+        const dropDownEl = document.querySelector(".dropdown-profile")
+        if (dropDownActive) {
+            dropDownEl.classList.add('hidden')
+        } else {
+            dropDownEl.classList.remove("hidden")
+        }
+        setDropDownActive(!dropDownActive)
+        console.log("clicked the profile")
+    }
+
     return (
-        <nav className='sticky top-0 z-20 backdrop-blur-sm bg-shade-fade flex justify-around text-color-base drop-shadow-md text-sm py-5 mobile:justify-between mobile-sm:justify-around mobile:py-5'>
+        <nav className='sticky top-0 z-20 flex justify-around bg-shade text-color-base drop-shadow-md text-xl py-5 mobile:justify-between mobile-sm:justify-around mobile:py-5'>
             <img
                 src={logo}
                 alt=''
-                className='w-52 select-none mt-auto mb-2 mx-3 mobile-sm:w-6/12'
+                className='w-72 select-none mt-auto mb-2 mx-3 mobile-sm:w-6/12'
             />
             {/* Links */}
             <div className="mobile:hidden">
@@ -77,10 +89,18 @@ function Navbar() {
                             </div>
                             :
                             (isAuthenticated &&
-                                <div className='mx-2'>
-                                    <img className='w-12' src={user.picture} alt='user-profile' />
-                                    <button className="bg-color-base-400 mx-5 p-2" onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
-                                </div>
+                                <>
+                                    <div className='flex mx-2 cursor-pointer' onClick={handleDropDown}>
+                                        <img className='w-12 cursor-pointer select-none' src={user.picture}  alt='user-profile' />
+                                        <h1 className='my-auto mx-2 text-xl select-none hover:underline'>{user.nickname}</h1>
+                                    </div>
+                                    <div className='absolute w-52 mt-6 list-none text-center drop-shadow-lg dropdown-profile hidden z-30 backdrop-blur-md opacity-80 bg-shade text-color-base'>
+                                        <li className="select-none cursor-pointer rounded-sm m-5 p-2 hover:bg-red" onClick={() => logout({ returnTo: window.location.origin })}>Logout</li>
+                                        <li className="select-none cursor-pointer rounded-sm m-5 p-2 hover:bg-main hover:text-color-shade">Your Orders</li>
+                                        <li className="select-none cursor-pointer rounded-sm m-5 p-2 hover:bg-main hover:text-color-shade">Wishlist</li>
+                                        <li className="select-none cursor-pointer rounded-sm m-5 p-2 hover:bg-main hover:text-color-shade">Cart / Buy</li>
+                                    </div>
+                                </>
                             )
                         :
                         <div className='flex'>

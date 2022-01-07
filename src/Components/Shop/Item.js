@@ -9,7 +9,8 @@ import Cart from '../Cart/Cart'
 import { BsFillSuitHeartFill } from 'react-icons/bs'
 /* ----- */
 
-function Item({ name, size, price, img, category, id }) {
+function Item({ name, size, price, img, category, id, renderFnc }) {
+
 
     const navigate = useNavigate()
 
@@ -20,12 +21,9 @@ function Item({ name, size, price, img, category, id }) {
 
     return (
         <>
-            <div className='w-fit text-left text-sm p-2 list-none cursor-pointer transition-all duration-300 hover:scale-105'>
+            <div className='w-fit text-left text-sm p-2 list-none cursor-pointer transition-all duration-200 hover:scale-105'>
                 <div className="h-image w-image" onClick={handleItemClick}>
-                    <img className='class-1 object-fit h-image w-image' src='https://source.unsplash.com/700x900/?cloths' alt='' />
-                    <div className="class-2">
-                        <h1>SHOW</h1>
-                    </div>
+                    <img className='object-fit h-image w-image' src='https://source.unsplash.com/700x900/?cloths' alt='' />
                 </div>
                 <li className='opacity-50'>{category ? category : "-"}</li>
                 <ul className='flex justify-between'>
@@ -35,9 +33,11 @@ function Item({ name, size, price, img, category, id }) {
                 <ul className='' >
                     <li className='mt-auto'>Rs.{price}</li>
                     <div>
-                        <Cart id={id}/>
+                        <div>
+                            <Cart id={id} name={name} price={price}/>
                         <button id="fav-off" className='p-2 text-color-main hidden'><BsFillSuitHeartFill /></button>
                         <button id="fav-on" className='p-2 text-color-shade hover:text-color-main'><BsFillSuitHeartFill /></button>
+                        </div>
                     </div>
                 </ul>
             </div>
